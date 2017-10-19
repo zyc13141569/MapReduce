@@ -1,0 +1,26 @@
+Read me file.
+About this problem.
+
+Read mutilple books and count the words that appeared in each book and number of books.
+Then do a calculation.
+
+Below is the detail description
+
+tf & idf
+
+For tf for this project, let us simply use the count of the number of occurrences of the word in the document. So this is very similar to an example MapReduce job that we did in class.
+
+Thus, tf is with respect to a word W and a document D. Let
+							tf(W,D)=#occurrences of W in D
+
+A better version of the tf measure is the number occurences divided by the total number of word (occurrences) in the document. However, this would make our MapReduce job a bit more involved. Well, maybe for next time.
+
+Define the idf of a word W as follows. let d(W) be the count of the number of documents that word W appears within. E.g, say that “parke” appears in 17 of the 20 documents. Then d(parke)=17. Let N be the total number of documents that we are processing; e.g., 20. Then
+							idf(W)=ln(Nd(W))
+
+where ln is natural log. Thus, inf(parke)=ln(2017)=0.162519.
+
+Ideally, we would compute the number of total documents involved as part of our MapReduce job. However, again, this would make our MapReduce job a bit more involved. So, this is also for next time. For this project, just hardcode N, the total number of documents being processed (e.g., 20), into your mappers or reducers.
+
+The tf-idf score for a word W in a document D is then just the product of the tf measure of the word and document and the idf measure of the word:
+							tf-idf(W,D)=tf(W,D)⋅idf(W)
